@@ -1,0 +1,33 @@
+{
+  "name": "movies-explorer-api",
+  "version": "1.0.0",
+  "description": "backend part of diploma project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js",
+    "start": "node app.js",
+    "lint": "npx eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alexandr-Ivsr/movies-explorer-api.git"
+  },
+  "keywords": [],
+  "author": "Alexandr Ivanov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alexandr-Ivsr/movies-explorer-api/issues"
+  },
+  "homepage": "https://github.com/Alexandr-Ivsr/movies-explorer-api#readme",
+  "dependencies": {
+    "eslint": "^8.9.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4",
+    "express": "^4.17.3",
+    "mongoose": "^6.2.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
