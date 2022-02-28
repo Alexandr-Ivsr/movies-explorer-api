@@ -1,4 +1,7 @@
 const Movie = require('../models/movie');
+const BadRequestError = require('../errors/BadRequestError');
+const NotFoundError = require('../errors/NotFoundError');
+const ForbiddenRequestError = require('../errors/ForbiddenRequestError');
 
 const getMovieList = (req, res, next) => {
   Movie.find({})
@@ -11,7 +14,7 @@ const getMovieList = (req, res, next) => {
 };
 
 const createMovie = (req, res, next) => {
-  const CurrentUserId = 'fsdhshdfh23434234';
+  const CurrentUserId = req.user._id;
   const {
     country,
     director,
@@ -44,7 +47,7 @@ const createMovie = (req, res, next) => {
     .catch((err) => {
       console.log(err.name);
       if (err.name === 'ValidationError') {
-        next(new Error(`${Object.values(err.errors).map((error) => error.message).join(', ')}`));
+        next(new BadRequestError(`${Object.values(err.errors).map((error) => error.message).join(', ')}`));
       }
       next(err);
     });
@@ -52,16 +55,16 @@ const createMovie = (req, res, next) => {
 
 const deleteMovie = (req, res, next) => {
   const { _id } = req.params;
-  const CurrentUserId = 'fsdhshdfh23434234';
+  const CurrentUserId = req.user._id;
 
   Movie.findById(_id)
-    .orFail(new Error(`Фильм с указанным id:${_id} не найден`))
+    .orFail(new NotFoundError(`Фильм с указанным id:${_id} не найден`))
     .then((movie) => {
       if (movie.owner.toString() === CurrentUserId) {
         return movie.remove();
       }
 
-      return Promise.reject(new Error('Ошибка! Попытка удалить чужой фильм'));
+      return Promise.reject(new ForbiddenRequestError('Ошибка! Попытка удалить чужой фильм'));
     })
     .then(() => {
       res.status(200).send({ message: 'Фильм успешно удален.' });
@@ -69,7 +72,7 @@ const deleteMovie = (req, res, next) => {
     })
     .catch((err) => {
       if (err.name === 'CastError') {
-        next(new Error('Введен неккоретный id при попытке удаления фильма'));
+        next(new BadRequestError('Введен неккоретный id при попытке удаления фильма'));
       }
       console.log(err.name, err.status, err.code);
       next(err);

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
+const BadRequestError = require('../errors/BadRequestError');
 
 const movieSchema = new mongoose.Schema({
   country: {
@@ -36,8 +37,8 @@ const movieSchema = new mongoose.Schema({
     type: String,
     required: true,
     validate(value) {
-      if (!validator.isUrl(value, { require_protocol: true })) {
-        throw new Error({ message: 'Ошибка!' });
+      if (!validator.isURL(value, { require_protocol: true })) {
+        throw new BadRequestError('Ошибка! В поле {PATH} передана некорректная ссылка.');
       }
     },
   },
@@ -46,8 +47,8 @@ const movieSchema = new mongoose.Schema({
     type: String,
     required: true,
     validate(value) {
-      if (!validator.isUrl(value, { require_protocol: true })) {
-        throw new Error({ message: 'Ошибка!' });
+      if (!validator.isURL(value, { require_protocol: true })) {
+        throw new BadRequestError('Ошибка! В поле {PATH} передана некорректная ссылка.');
       }
     },
   },
@@ -56,8 +57,8 @@ const movieSchema = new mongoose.Schema({
     type: String,
     required: true,
     validate(value) {
-      if (!validator.isUrl(value, { require_protocol: true })) {
-        throw new Error({ message: 'Ошибка!' });
+      if (!validator.isURL(value, { require_protocol: true })) {
+        throw new BadRequestError('Ошибка! В поле {PATH} передана некорректная ссылка.');
       }
     },
   },
@@ -77,7 +78,7 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate(value) {
       if (!validator.isAlpha(value, ['ru-RU'])) {
-        throw new Error({ message: 'Ошибка!' });
+        throw new BadRequestError('Ошибка! Значение поля {PATH} должно быть на русском языке.');
       }
     },
   },
@@ -87,7 +88,7 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate(value) {
       if (!validator.isAlpha(value, ['en-US'])) {
-        throw new Error({ message: 'Ошибка!' });
+        throw new BadRequestError('Ошибка! Значение поля {PATH} должно быть на английском языке.');
       }
     },
   },
