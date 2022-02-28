@@ -22,11 +22,11 @@ const createMovie = (req, res, next) => {
     year,
     description,
     image,
-    trailer,
-    nameRU,
-    nameEN,
+    trailerLink,
     thumbnail,
     movieId,
+    nameRU,
+    nameEN,
   } = req.body;
 
   Movie.create({
@@ -36,12 +36,12 @@ const createMovie = (req, res, next) => {
     year,
     description,
     image,
-    trailer,
+    trailerLink,
+    thumbnail,
+    movieId,
+    owner: CurrentUserId,
     nameRU,
     nameEN,
-    thumbnail,
-    owner: CurrentUserId,
-    movieId,
   })
     .then((movie) => res.status(200).send(movie))
     .catch((err) => {
