@@ -31,6 +31,7 @@ const movieSchema = new mongoose.Schema({
   description: {
     type: String,
     required: true,
+    minlength: 4,
   },
 
   image: {
@@ -77,21 +78,13 @@ const movieSchema = new mongoose.Schema({
   nameRU: {
     type: String,
     required: true,
-    validate(value) {
-      if (!validator.isAlpha(value, ['ru-RU'])) {
-        throw new BadRequestError('Ошибка! Значение поля {PATH} должно быть на русском языке.');
-      }
-    },
+    minlength: 2,
   },
 
   nameEN: {
     type: String,
     required: true,
-    validate(value) {
-      if (!validator.isAlpha(value, ['en-US'])) {
-        throw new BadRequestError('Ошибка! Значение поля {PATH} должно быть на английском языке.');
-      }
-    },
+    minlength: 2,
   },
 });
 
