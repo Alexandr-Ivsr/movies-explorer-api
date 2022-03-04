@@ -35,11 +35,11 @@ app.post('/signin', celebrate({
     password: Joi.string().required().min(8),
   }),
 }), signin);
-app.get('/signout', logout);
 
 app.use(auth);
 app.use('/users', UsersRouter);
 app.use('/movies', MoviesRouter);
+app.get('/signout', logout);
 app.use((req, res, next) => {
   next(new NotFoundError('Ошибка! запрашиваемая страница не найдена'));
 });
