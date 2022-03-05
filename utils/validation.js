@@ -8,20 +8,14 @@ const validateUrl = (value) => {
   return value;
 };
 
-// const validateRussianAlpha = (value) => {
-//   if (!validator.isAlphanumeric(value, ['ru-RU'], { ignore: ' ' })) {
-//     throw new BadRequestError('Ошибка! Значение поля {PATH} должно быть на русском языке.');
-//   }
-//   return value;
-// };
-
-// const validateEnglishAlpha = (value) => {
-//   if (!validator.isAlphanumeric(value, ['en-US'], { ignore: ' ' })) {
-//     throw new BadRequestError('Ошибка! Значение поля {PATH} должно быть на английском языке.');
-//   }
-//   return value;
-// };
+const validateEmail = (value) => {
+  if (!validator.isEmail(value, { require_protocol: true })) {
+    throw new BadRequestError('Некорректное значение поля email');
+  }
+  return value;
+};
 
 module.exports = {
   validateUrl,
+  validateEmail,
 };

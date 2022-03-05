@@ -24,6 +24,10 @@ const signup = (req, res, next) => {
           }
           next(err);
         });
+    })
+    .catch((err) => {
+      console.log(err.name, err.code, err.status);
+      next(err);
     });
 };
 
@@ -92,6 +96,8 @@ const updateUser = (req, res, next) => {
         next(new BadRequestError('Переданы некорректные значения при обновлении пользователя'));
       } else if (err.name === 'ValidationError') {
         next(new BadRequestError(`${Object.values(err.errors).map((error) => error.message).join(', ')}`));
+      } else if (err.name === 'MongoServerError') {
+        next(new ConflictRequestError('Ошибка! Пользователь с такой почтой уже существует.'));
       }
       next(err);
     });
