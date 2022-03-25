@@ -1,6 +1,7 @@
 const allowedCors = [
-  // 'http://',
-  // 'https://',
+  'http://localhost:3000',
+  'https://explorer-movie.nomoredomains.work',
+  'http://explorer-movie.nomoredomains.work',
 ];
 
 const corsHandler = (req, res, next) => {
