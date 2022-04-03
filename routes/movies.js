@@ -6,8 +6,8 @@ const { validateUrl } = require('../utils/validation');
 router.get('/', getMovieList);
 router.post('/', celebrate({
   body: Joi.object().keys({
-    country: Joi.string().required().min(4).max(20),
-    director: Joi.string().required().min(10).max(30),
+    country: Joi.string().required().min(2).max(100),
+    director: Joi.string().required().min(5).max(100),
     duration: Joi.number().required(),
     year: Joi.number().required().min(4),
     description: Joi.string().required().min(4),
