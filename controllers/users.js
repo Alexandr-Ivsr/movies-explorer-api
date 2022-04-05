@@ -57,8 +57,11 @@ const signin = (req, res, next) => {
 };
 
 const logout = (req, res) => {
-  res.cookie('jwt', '')
-    .send({ message: 'Вы вышли из аккаунта' });
+  res.clearCookie('jwt', {
+    httpOnly: true,
+    sameSite: true,
+  });
+  res.send({ message: 'Вы вышли из аккаунта' });
   console.log('logout system success');
 };
 
