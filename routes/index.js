@@ -9,10 +9,10 @@ const auth = require('../middlware/auth');
 
 router.use('/signup', SignupRouter);
 router.use('/signin', SigninRouter);
+router.use('/signout', SignoutRouter);
 router.use(auth);
 router.use('/users', UsersRouter);
 router.use('/movies', MoviesRouter);
-router.use('/signout', SignoutRouter);
 
 router.use((req, res, next) => {
   next(new NotFoundError('Ошибка! запрашиваемая страница не найдена'));
