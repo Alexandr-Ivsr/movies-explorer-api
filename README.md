@@ -9,7 +9,7 @@ Node.js, mongoose, Express.js + MongoDB, Validator.js, Celebrate/Joi, Winston, E
 ```
 git clone https://github.com/Alexandr-Ivsr/movies-explorer-api.git
 ```
-+ Перейдите в папку backend:
++ Перейдите в папку movies-explorer-api:
 ```
 cd movies-explorer-api
 ```
