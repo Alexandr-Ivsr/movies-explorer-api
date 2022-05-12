@@ -1,5 +1,32 @@
 # movies-explorer-api
-backend part of diploma project
+## Описание:
+Бэкенд-часть приложения movies-explorer, api предоставляет возможность регистрации, авторизации, выхода из аккаунта пользователя, редактирование информации о профиле пользователя, а также получение списка фильмов, добавление нового фильма, удаление.
+В данном проекте я осваивал и закреплял на практике такие важные аспекты серверной разработки, как работа с CORS, безопасность, валидация входящих запросов на сервер, валидация данных на уровне схемы БД, централизованная обработка ошибок, работа с JSON Web Token и cookie.
+## Используемые технологии:
+Node.js, mongoose, Express.js + MongoDB, Validator.js, Celebrate/Joi, Winston, Express-winston, CORS
+## Инструкция по развертыванию проекта:
++ Клонируйте репозиторий:
+```
+git clone https://github.com/Alexandr-Ivsr/movies-explorer-api.git
+```
++ Перейдите в папку backend:
+```
+cd movies-explorer-api
+```
 
-# Домен
-https://api.explorer-movie.nomoredomains.work
++ Установите зависимости:
+```
+npm i
+```
++ Запустить сервер:
+```
+npm run build
+```
++ Запустить сервер c hot-reload:
+```
+npm run dev
+```
+### Системные требования:
+Для запуска проекта понадобится `Node.js` версии 16.13.1 или выше, а также `MongoDB` версии 5.0.5 или выше
+## Фронтенд-часть приложения:
+https://github.com/Alexandr-Ivsr/movies-explorer-frontend
